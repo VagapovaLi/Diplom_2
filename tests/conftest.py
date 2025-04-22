@@ -1,6 +1,6 @@
 import pytest
 import requests
-import helpers
+import helper
 from urls import Urls
 
 
@@ -15,5 +15,5 @@ def create_user(user_data_login_password):
     # Генерирует данные пользователя со случайным логином, паролем и именем.
 def user_data_login_password():
 
-        user_data= helpers.UserDataGenerator()
+        user_data= helper.UserDataGenerator()
         return user_data.generate_random_data_user()

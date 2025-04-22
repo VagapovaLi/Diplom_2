@@ -14,7 +14,7 @@ class UserDataGenerator:
     @allure.step('Генерация данных пользователя с случайным логином, паролем и именем')
     def generate_random_data_user(self):
         return {
-            "login": StringGenerator.generate_random_string(10),
+            "email": StringGenerator.generate_random_string(10) + '@yandex.ru',
             "password": StringGenerator.generate_random_string(10),
-            "firstName": StringGenerator.generate_random_string(10)
+            "name": StringGenerator.generate_random_string(10)
         }
