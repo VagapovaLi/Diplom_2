@@ -16,3 +16,8 @@ class Response:
         "success": False,
         "message": "Email, password and name are required fields"
     }
+
+    RESPONSE_INCORRECT_DATA = {
+        "success": False,
+        "message": "email or password are incorrect"
+    }

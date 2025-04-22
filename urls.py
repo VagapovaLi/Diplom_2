@@ -1,3 +1,4 @@
 class Urls:
-    URL_user_create = 'https://stellarburgers.nomoreparties.site/api/auth/register'
+    URL_USER_CREATE = 'https://stellarburgers.nomoreparties.site/api/auth/register'
+    URL_USER_LOGIN = 'https://stellarburgers.nomoreparties.site/api/auth/login'
 

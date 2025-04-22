@@ -6,7 +6,7 @@ from urls import Urls
 
 @pytest.fixture
 def create_user(user_data_login_password):
-    response = requests.post(Urls.URL_user_create, json=user_data_login_password)
+    response = requests.post(Urls.URL_USER_CREATE, json=user_data_login_password)
 
     yield response
 
