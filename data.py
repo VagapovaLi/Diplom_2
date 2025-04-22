@@ -11,3 +11,8 @@ class Response:
         "success": False,
         "message": "User already exists"
     }
+
+    RESPONSE_INCOMPLETE_DATA = {
+        "success": False,
+        "message": "Email, password and name are required fields"
+    }
