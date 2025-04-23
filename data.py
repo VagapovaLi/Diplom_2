@@ -21,3 +21,10 @@ class Response:
         "success": False,
         "message": "email or password are incorrect"
     }
+
+
+
+    RESPONSE_NOT_AUTHORIZED = {
+        "success": False,
+        "message": "You should be authorised"
+    }
