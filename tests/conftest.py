@@ -17,3 +17,4 @@ def user_data_login_password():
 
         user_data= helper.UserDataGenerator()
         return user_data.generate_random_data_user()
+

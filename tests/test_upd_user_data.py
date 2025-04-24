@@ -9,12 +9,9 @@ from data import Response
 class TestUpdatesUser:
     @allure.title('Изменение данных пользователя с авторизацией.Ожидаемый результат: 200')
     @pytest.mark.parametrize('key', ['email', 'name'])
-    def test_update_user_data_with_auth_answer_200(self, create_user, key):
+    def test_update_user_data_with_auth_expected_answer_200(self, create_user, key):
 
         token = create_user.json().get('accessToken')
-        print(token)
-
-
         payload = {'email': create_user.json()['user']['email'],
                    'name': create_user.json()['user']['name'],
                    key: StringGenerator.generate_random_string(10) if key == 'name'
@@ -29,7 +26,7 @@ class TestUpdatesUser:
 
     @allure.title('Изменение данных пользователя без авторизации.Ожидаемый результат: 401')
 
-    def test_update_user_data_without_auth_answer_401(self, create_user):
+    def test_update_user_data_without_auth_expected_answer_401(self, create_user):
 
         response_update_user = requests.patch(Urls.URL_UPDATE_USERS,
                                               data = {'email': 'test' + create_user.json()['user']['email'],

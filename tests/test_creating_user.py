@@ -10,7 +10,7 @@ from urls import Urls
 @allure.story('Сценарии создания пользователя')
 class TestCreateUser:
     @allure.title('Создание нового пользователя с валидными данными.Ожидаемый результат: 200')
-    def test_create_new_user_success_answer_403(self, create_user):
+    def test_create_new_user_expected_answer_403(self, create_user):
         response = create_user
 
         assert response.status_code == 200 and response.json().get("success") is True

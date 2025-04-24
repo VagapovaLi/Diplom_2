@@ -9,7 +9,7 @@ from urls import Urls
 @allure.story('Сценарии авторизации пользователя')
 class TestCreateUser:
     @allure.title('авторизации пользователя с валидными данными.Ожидаемый результат: 200')
-    def test_login_user_success_answer_200(self, create_user):
+    def test_login_user_expected_answer_200(self, create_user):
         response_user = create_user
         user_data = json.loads(response_user.request.body)
         login_response = requests.post(Urls.URL_USER_LOGIN, json=user_data)
@@ -22,7 +22,7 @@ class TestCreateUser:
     @pytest.mark.parametrize('key', ['email', 'password'])
 
 
-    def test_login_user_with_invalid_credentials_success_answer_401(self,create_user, key):
+    def test_login_user_with_invalid_credentials_expected_answer_401(self,create_user, key):
         response_user = create_user
         user_data = json.loads(response_user.request.body)
         payload = {
