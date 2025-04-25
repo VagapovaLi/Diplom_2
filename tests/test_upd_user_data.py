@@ -1,7 +1,7 @@
 import allure
 import pytest
 import requests
-from helper import StringGenerator
+from tests.helper import StringGenerator
 from urls import Urls
 from data import Response
 

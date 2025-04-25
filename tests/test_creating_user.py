@@ -2,7 +2,7 @@ import allure
 import pytest
 import requests
 from data import Response
-from helper import StringGenerator
+from tests.helper import StringGenerator
 import json
 from urls import Urls
 

@@ -1,6 +1,6 @@
 import pytest
 import requests
-import helper
+from tests import helper
 from urls import Urls
 
 
