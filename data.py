@@ -23,11 +23,17 @@ class Response:
     }
 
 
-
     RESPONSE_NOT_AUTHORIZED = {
         "success": False,
         "message": "You should be authorised"
     }
+
+    RESPONSE_NOT_INGREDIENT = {
+        "success": False,
+        "message": "Ingredient ids must be provided"
+    }
+
+
 
 class RequestOrderData:
     payload = {

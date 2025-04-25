@@ -29,7 +29,7 @@ class TestOrdersCreation:
         payload = []
 
         response = requests.post(Urls.URL_ORDER_CREATION, headers={'Authorization': token}, data=payload)
-        assert response.status_code == 400
+        assert response.status_code == 400   and response.json() == Response.RESPONSE_NOT_INGREDIENT
 
 
     @allure.title('Создание заказа с невалидным хеш ингредиента.Ожидаемый результат: 500')
