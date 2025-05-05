@@ -1,7 +1,7 @@
 import allure
 import requests
-from data import RequestOrderData, Response
-from urls import Urls
+from data.data import RequestOrderData, Response
+from urls import URL_ORDER_CREATION,URL_RECEIVING_ORDER
 
 @allure.story('Сценарии создания заказа')
 class TestOrdersCreation:
@@ -10,7 +10,7 @@ class TestOrdersCreation:
     def test_create_order_authorized_user_expected_answer_200(self, create_user):
         token = create_user.json().get('accessToken')
         payload =RequestOrderData.payload
-        response = requests.post(Urls.URL_ORDER_CREATION, headers={'Authorization': token}, data=payload )
+        response = requests.post(URL_ORDER_CREATION, headers={'Authorization': token}, data=payload )
 
         assert response.status_code == 200 and response.json().get("success") is True
 
@@ -18,7 +18,7 @@ class TestOrdersCreation:
     @allure.title('Создание заказа с ингредиентами без авторизации пользователя.Ожидаемый результат: 200')
     def test_create_order_authorized_user_expected_answer_200(self):
         payload =RequestOrderData.payload
-        response = requests.post(Urls.URL_ORDER_CREATION,  data=payload )
+        response = requests.post(URL_ORDER_CREATION,  data=payload )
 
         assert response.status_code == 200 and response.json().get("success") is True
 
@@ -28,7 +28,7 @@ class TestOrdersCreation:
         token = create_user.json().get('accessToken')
         payload = []
 
-        response = requests.post(Urls.URL_ORDER_CREATION, headers={'Authorization': token}, data=payload)
+        response = requests.post(URL_ORDER_CREATION, headers={'Authorization': token}, data=payload)
         assert response.status_code == 400   and response.json() == Response.RESPONSE_NOT_INGREDIENT
 
 
@@ -38,7 +38,7 @@ class TestOrdersCreation:
         payload = {
         "ingredients": ['61c0c5a71d1f82001_incorrect']
     }
-        response = requests.post(Urls.URL_ORDER_CREATION, headers={'Authorization': token}, data=payload)
+        response = requests.post(URL_ORDER_CREATION, headers={'Authorization': token}, data=payload)
         assert response.status_code == 500
 
 
@@ -46,8 +46,8 @@ class TestOrdersCreation:
     def test_receiving_order_authorized_user_expected_answer_200(self, create_user):
         token = create_user.json().get('accessToken')
         payload =RequestOrderData.payload
-        requests.post(Urls.URL_ORDER_CREATION, headers={'Authorization': token}, data=payload )
-        response_order = requests.get(Urls.URL_RECEIVING_ORDER, headers={'Authorization': token})
+        requests.post(URL_ORDER_CREATION, headers={'Authorization': token}, data=payload )
+        response_order = requests.get(URL_RECEIVING_ORDER, headers={'Authorization': token})
 
         assert response_order.status_code == 200
         assert len(response_order.json()['orders']) == 1
@@ -55,6 +55,6 @@ class TestOrdersCreation:
 
     @allure.title('Получение заказа пользователя без авторизации.Ожидаемый результат: 401')
     def test_receiving_order_without_authorization_user_expected_answer_200(self):
-        response_order = requests.get(Urls.URL_RECEIVING_ORDER)
+        response_order = requests.get(URL_RECEIVING_ORDER)
         assert response_order.status_code == 401 and response_order.json() == Response.RESPONSE_NOT_AUTHORIZED
 

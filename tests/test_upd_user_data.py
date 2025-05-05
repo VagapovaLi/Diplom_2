@@ -1,9 +1,9 @@
 import allure
 import pytest
 import requests
-from tests.helper import StringGenerator
-from urls import Urls
-from data import Response
+from helper import StringGenerator
+from urls import URL_UPDATE_USERS
+from data.data import Response
 
 @allure.story('Сценарии изменений данных пользователя')
 class TestUpdatesUser:
@@ -18,7 +18,7 @@ class TestUpdatesUser:
                    else StringGenerator.generate_random_string(10) + '@yandex.ru'}
 
 
-        response_update_user = requests.patch(Urls.URL_UPDATE_USERS, headers={'Authorization': f'{token}'},
+        response_update_user = requests.patch(URL_UPDATE_USERS, headers={'Authorization': f'{token}'},
                                                json=payload)
 
         assert response_update_user.status_code == 200
@@ -28,7 +28,7 @@ class TestUpdatesUser:
 
     def test_update_user_data_without_auth_expected_answer_401(self, create_user):
 
-        response_update_user = requests.patch(Urls.URL_UPDATE_USERS,
+        response_update_user = requests.patch(URL_UPDATE_USERS,
                                               data = {'email': 'test' + create_user.json()['user']['email'],
                    'name': 'test' + create_user.json()['user']['name']})
 

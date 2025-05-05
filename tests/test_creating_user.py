@@ -1,10 +1,10 @@
 import allure
 import pytest
 import requests
-from data import Response
-from tests.helper import StringGenerator
+from data.data import Response
+from helper import StringGenerator
 import json
-from urls import Urls
+from urls import URL_USER_CREATE
 
 
 @allure.story('Сценарии создания пользователя')
@@ -19,7 +19,7 @@ class TestCreateUser:
     def test_create_user_already_registered(self,create_user):
         response_user = create_user
         user_data = json.loads(response_user.request.body)
-        duplicate_response = requests.post(Urls.URL_USER_CREATE, json=user_data)
+        duplicate_response = requests.post(URL_USER_CREATE, json=user_data)
 
         assert duplicate_response.status_code == 403 and duplicate_response.json() == Response.RESPONSE_USER_EXISTS
 
@@ -34,5 +34,5 @@ class TestCreateUser:
         }
 
         payload.pop(field)
-        response = requests.post(Urls.URL_USER_CREATE, data=payload)
+        response = requests.post(URL_USER_CREATE, data=payload)
         assert response.status_code == 403 and response.json() == Response.RESPONSE_INCOMPLETE_DATA

@@ -1,9 +1,4 @@
-#import datetime
-import allure
 
-import requests
-
-from urls import Urls
 
 class Response:
 
@@ -41,3 +36,11 @@ class RequestOrderData:
                             '61c0c5a71d1f82001bdaaa6c']
     }
 
+class RequestUserData:
+    LENTH_KEYS_USER = 10
+
+    payload = {
+        "email": "testdiplom2@yandex.ru",
+        "password": "Password",
+        "name": "diplom2"
+    }
