@@ -24,16 +24,3 @@ def create_user():
 
     ApiClient.delete(url=URL_USER_LOGIN, headers={'Authorization': f'{response.json()["accessToken"]}'})
 
-    # response = requests.post(Urls.URL_USER_CREATE, json=user_data_login_password)
-    #
-    # yield response
-
-
-
-# @pytest.fixture
-#     # Генерирует данные пользователя со случайным логином, паролем и именем.
-# def user_data_login_password():
-#
-#         user_data= helper.UserDataGenerator()
-#         return user_data.generate_random_data_user()
-
